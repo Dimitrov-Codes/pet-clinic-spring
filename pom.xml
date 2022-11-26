@@ -4,7 +4,7 @@
 
     <groupId>com.example</groupId>
     <artifactId>pet-clinic-spring</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>pet-clinic-spring</name>
     <description>pet-clinic-spring</description>
 
@@ -51,7 +51,7 @@
     <scm>
         <url>https://github.com/Dimitrov-Codes/pet-clinic-spring.git</url>
         <connection>scm:git:https://github.com/Dimitrov-Codes/pet-clinic-spring.git</connection>
-        <tag>HEAD</tag>
+        <tag>pet-clinic-spring-0.0.1</tag>
     </scm>
 
 </project>
