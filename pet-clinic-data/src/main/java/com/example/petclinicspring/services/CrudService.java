@@ -1,13 +1,14 @@
 package com.example.petclinicspring.services;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public interface CrudService<T, ID> {
-    Set<T> findAll();
+    HashSet<T> findAll();
 
     T findById(ID id);
 
-    T save(T object);
+    T save(ID id, T object);
 
     T deleteById(ID id);
 
