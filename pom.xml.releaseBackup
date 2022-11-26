@@ -48,7 +48,7 @@
     </build>
     <scm>
        <developerConnection>
-           git:git@github.com:Dimitrov-Codes/pet-clinic-spring.git
+           scm:git:git@github.com:Dimitrov-Codes/pet-clinic-spring.git
        </developerConnection>
         <tag>pet-clinic-spring-0.0.1</tag>
     </scm>
