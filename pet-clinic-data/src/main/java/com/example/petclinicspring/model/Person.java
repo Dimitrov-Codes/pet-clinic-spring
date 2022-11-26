@@ -1,6 +1,6 @@
 package com.example.petclinicspring.model;
 
-public class Person {
+public class Person extends BaseEntity{
     private final String firstName;
     private final String lastName;
 
