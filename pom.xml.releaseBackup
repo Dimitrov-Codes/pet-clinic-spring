@@ -51,7 +51,7 @@
     <scm>
         <url>https://github.com/Dimitrov-Codes/pet-clinic-spring.git</url>
         <connection>scm:git:https://github.com/Dimitrov-Codes/pet-clinic-spring.git</connection>
-        <tag>pet-clinic-spring-0.0.1</tag>
+        <tag>HEAD</tag>
     </scm>
 
 </project>
