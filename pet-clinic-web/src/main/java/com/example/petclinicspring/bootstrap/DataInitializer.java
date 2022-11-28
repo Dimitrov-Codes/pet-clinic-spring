@@ -5,7 +5,9 @@ import com.example.petclinicspring.model.Vet;
 import com.example.petclinicspring.services.OwnerService;
 import com.example.petclinicspring.services.VetService;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
 
+@Component
 public class DataInitializer implements CommandLineRunner {
     private final OwnerService ownerService;
     private final VetService vetService;
@@ -17,7 +19,6 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println(args.getClass()) ;
         Owner owner1 = new Owner("Micheal", "Keaton");
         ownerService.save(1L,owner1);
 

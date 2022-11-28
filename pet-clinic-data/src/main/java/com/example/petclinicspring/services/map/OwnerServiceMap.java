@@ -2,11 +2,13 @@ package com.example.petclinicspring.services.map;
 
 import com.example.petclinicspring.model.Owner;
 import com.example.petclinicspring.services.CrudService;
+import com.example.petclinicspring.services.OwnerService;
+import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 
-
-public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements CrudService<Owner, Long> {
+@Service
+public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService {
     @Override
     public HashSet<Owner> findAll() {
         return super.findAll();
