@@ -12,6 +12,7 @@ public class PetClinicSpringApplication {
         SpringApplication.run(PetClinicSpringApplication.class, args);
         System.out.println("http://localhost:8080");
     }
+
     @RequestMapping("/error")
     public String getError(Model model) {
 
