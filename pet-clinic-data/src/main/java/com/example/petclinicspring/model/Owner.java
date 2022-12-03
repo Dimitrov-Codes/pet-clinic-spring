@@ -9,8 +9,12 @@ public class Owner extends Person {
     private String phone;
     private Set<Pet> pets = new HashSet<>();
 
-    public Owner(String firstName, String lastName) {
+    public Owner(String firstName, String lastName, String address, String city, String phone) {
         super(firstName, lastName);
+        this.address = address;
+        this.city = city;
+        this.phone = phone;
+
     }
 
     public String getAddress() {
@@ -19,6 +23,18 @@ public class Owner extends Person {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "Owner:{" +
+                "firstName='" + getFirstName() + '\'' +
+                "lastName='" + getLastName() + '\'' +
+                "address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", phone='" + phone + '\'' +
+                ", pets=" + pets +
+                '}' + "\n";
     }
 
     public String getCity() {

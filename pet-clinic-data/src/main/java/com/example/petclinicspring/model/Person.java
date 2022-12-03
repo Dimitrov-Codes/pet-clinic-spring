@@ -18,12 +18,5 @@ public class Person extends BaseEntity {
         return lastName;
     }
 
-    @Override
-    public String toString() {
-        return "Person{" +
-                "id='" + getId() + '\'' +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                '}';
-    }
+
 }
