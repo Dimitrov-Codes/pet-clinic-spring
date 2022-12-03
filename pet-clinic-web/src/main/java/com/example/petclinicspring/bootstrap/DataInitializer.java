@@ -20,16 +20,16 @@ public class DataInitializer implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         Owner owner1 = new Owner("Micheal", "Keaton");
-        ownerService.save(1L,owner1);
+        ownerService.save(owner1);
 
         Owner owner2 = new Owner("Keegan","Micheal");
-        ownerService.save(2L,owner2);
+        ownerService.save(owner2);
 
         Vet vet1 = new Vet("Yung", "Bean");
-        vetService.save(1L, vet1);
+        vetService.save(vet1);
 
         Vet vet2 = new Vet("Moar", "Groovy");
-        vetService.save(3L, vet2);
+        vetService.save(vet2);
 
         System.out.println(owner1);
         System.out.println(owner2);

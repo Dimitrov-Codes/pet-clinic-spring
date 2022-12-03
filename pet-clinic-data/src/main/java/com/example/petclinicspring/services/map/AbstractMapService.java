@@ -1,27 +1,33 @@
 package com.example.petclinicspring.services.map;
 
+import com.example.petclinicspring.model.BaseEntity;
 import com.example.petclinicspring.services.CrudService;
 
 import java.util.HashMap;
 import java.util.HashSet;
 
-public abstract class AbstractMapService<T, ID> implements CrudService<T, ID> {
-    protected HashMap<ID, T> map = new HashMap<>();
+public abstract class AbstractMapService<T extends BaseEntity> implements CrudService<T> {
+    protected HashMap<Long, T> map = new HashMap<>();
 
     public HashSet<T> findAll() {
         return new HashSet<>(map.values());
     }
 
-    public T findById(ID id) {
+    public T findById(Long id) {
         return map.get(id);
     }
 
-    public T save(ID id, T object) {
-        map.put(id, object);
+    public T save(T object) {
+        object.setId(generateId());
+        map.put(object.getId(), object);
         return object;
     }
 
-    public T deleteById(ID id) {
+    private Long generateId() {
+        return (long)(map.size() + 1);
+    }
+
+    public T deleteById(Long id) {
         T object = map.get(id);
         if (map.containsKey(id)) {
             map.remove(id);

@@ -9,6 +9,7 @@ public class Person extends BaseEntity {
         this.lastName = lastName;
     }
 
+
     public String getFirstName() {
         return firstName;
     }
@@ -20,6 +21,7 @@ public class Person extends BaseEntity {
     @Override
     public String toString() {
         return "Person{" +
+                "id='" + getId() + '\'' +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 '}';
