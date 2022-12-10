@@ -1,22 +1,31 @@
 package com.example.petclinicspring.model;
 
+import jakarta.persistence.MappedSuperclass;
+import lombok.*;
+import org.hibernate.Hibernate;
+
+import java.util.Objects;
+
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@MappedSuperclass
 public class Person extends BaseEntity {
-    private final String firstName;
-    private final String lastName;
+    private String firstName;
+    private String lastName;
 
-    public Person(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Person person = (Person) o;
+        return getId() != null && Objects.equals(getId(), person.getId());
     }
 
-
-    public String getFirstName() {
-        return firstName;
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
     }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-
 }

@@ -27,22 +27,21 @@ public abstract class AbstractMapService<T extends BaseEntity> implements CrudSe
         return (long)(map.size() + 1);
     }
 
-    public T deleteById(Long id) {
+    public void deleteById(Long id) {
         T object = map.get(id);
         if (map.containsKey(id)) {
             map.remove(id);
         } else {
             throw new RuntimeException(id + "does not exist");
         }
-        return object;
     }
 
-    public T delete(T object) {
+    public void delete(T object) {
         if (map.containsValue(object)) {
             map.entrySet().removeIf(entry -> entry.getValue() == object);
         } else {
             throw new RuntimeException(object + "does not exist");
         }
-        return object;
+
     }
 }

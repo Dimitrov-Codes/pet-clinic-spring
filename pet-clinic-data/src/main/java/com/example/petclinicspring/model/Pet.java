@@ -1,11 +1,34 @@
 package com.example.petclinicspring.model;
 
-import java.time.LocalDate;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import org.hibernate.Hibernate;
 
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
+@Entity
 public class Pet extends BaseEntity {
+    @ManyToOne
+    @JoinColumn(name = "type_id")
     private PetType petType;
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
     private Owner owner;
     private LocalDate birthDate;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @ToString.Exclude
+    private Set<Visit> visits = new HashSet<>();
 
     public Pet(PetType petType, Owner owner, LocalDate birthDate) {
         this.petType = petType;
@@ -13,35 +36,16 @@ public class Pet extends BaseEntity {
         this.birthDate = birthDate;
     }
 
-    public Owner getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Owner owner) {
-        this.owner = owner;
-    }
-
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public PetType getPetType() {
-        return petType;
-    }
-
-    public void setPetType(PetType petType) {
-        this.petType = petType;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Pet pet = (Pet) o;
+        return getId() != null && Objects.equals(getId(), pet.getId());
     }
 
     @Override
-    public String toString() {
-        return "\nPet:{" +
-                "petType=" + petType +
-                ", birthDate=" + birthDate +
-                '}'  ;
+    public int hashCode() {
+        return getClass().hashCode();
     }
 }

@@ -1,9 +1,7 @@
 package com.example.petclinicspring.bootstrap;
 
 import com.example.petclinicspring.model.*;
-import com.example.petclinicspring.services.OwnerService;
-import com.example.petclinicspring.services.PetTypeService;
-import com.example.petclinicspring.services.VetService;
+import com.example.petclinicspring.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -14,16 +12,24 @@ public class DataInitializer implements CommandLineRunner {
     private final OwnerService ownerService;
     private final VetService vetService;
     private final PetTypeService petTypeService;
-
-    public DataInitializer(OwnerService ownerService, VetService vetService, PetTypeService petTypeService) {
+    private final SpecialtyService specialtyService;
+    private final VisitService visitService;
+    public DataInitializer(OwnerService ownerService, VetService vetService,
+                           PetTypeService petTypeService, SpecialtyService specialtyService,
+                           VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
+        this.specialtyService = specialtyService;
+        this.visitService = visitService;
     }
 
     @Override
     public void run(String... args) throws Exception {
+        if(petTypeService.findAll().size() == 0) loadData();
+    }
 
+    private void loadData() {
         PetType dog = new PetType();
         dog.setName("Dog");
         petTypeService.save(dog);
@@ -34,7 +40,7 @@ public class DataInitializer implements CommandLineRunner {
 
 
         Owner owner1 = new Owner("Micheal", "Keaton", "Shollinganallur", "Chennai", "+919884944786");
-
+        System.out.println(Owner.builder().firstName("Kat").lastName("Ty").address("Los InLife").city("Murica").phone("+910937492083"));
         Pet costco = new Pet(dog, owner1, LocalDate.of(2002, 3, 8));
         Pet julie = new Pet(cat, owner1, LocalDate.of(2012, 11, 10));
 
@@ -54,16 +60,30 @@ public class DataInitializer implements CommandLineRunner {
         ownerService.save(owner2);
 
         Specialty surgeon = new Specialty("Surgeon");
-        Specialty exoticAnimal = new Specialty("Experience with exotic and undomesticated pets");
+        Specialty dentistry = new Specialty("Dentistry");
+        specialtyService.save(surgeon);
+        specialtyService.save(dentistry);
 
 
         Vet vet1 = new Vet("Yung", "Bean");
-        vet1.getSpecialties().add(surgeon);
+        vet1.getSpecialties().add(dentistry);
         vetService.save(vet1);
 
         Vet vet2 = new Vet("Moar", "Groovy");
-        vet2.getSpecialties().add(exoticAnimal);
+        vet2.getSpecialties().add(surgeon);
         vetService.save(vet2);
+
+        Visit catVisit = new Visit();
+        catVisit.setPet(ruri);
+        catVisit.setDate(LocalDate.now());
+        catVisit.setDesc("Worms in tummy");
+        visitService.save(catVisit);
+
+        Visit dogVisit = new Visit();
+        dogVisit.setPet(costco);
+        dogVisit.setDate(LocalDate.now());
+        dogVisit.setDesc("fever");
+        visitService.save(dogVisit);
 
         System.out.println(owner1 + "\n");
         System.out.println(owner2 + "\n");
@@ -71,5 +91,8 @@ public class DataInitializer implements CommandLineRunner {
         System.out.println(vet2 + "\n");
         System.out.println(dog + "\n");
         System.out.println(cat + "\n");
+        System.out.println(catVisit + "\n");
+        System.out.println(dogVisit + "\n");
+
     }
 }
